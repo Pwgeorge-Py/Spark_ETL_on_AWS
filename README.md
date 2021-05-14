@@ -1,4 +1,5 @@
 <h2>Project goals</h2>
+
 The purpose of this pipeline and database is to gain analysis insights on the consumer habits who use the music streaming app Sparkify.
 Data is collected by the app in JSON format and is stored in an AWS S3 bucket.
 The 2 source datasets are: 
@@ -19,24 +20,3 @@ Users
 Songs
 Artists
 Time
-
-
-<h4>Example queries for songplays analysis</h4>
-
-<h2>Find top 10 artists by listeners</h2>
-SELECT COUNT(songplays.*) AS Listens, artists.name AS Artist
-FROM songplays
-JOIN artists ON songplays.artist_id = artists.artist_id
-GROUP BY Artist
-ORDER BY Listens DESC
-LIMIT 10;
-
-<h2>Find the most popular song amongst paying users</h2>
-SELECT COUNT(songplays.*) AS Listens, songs.title AS Song
-FROM songplays
-JOIN songs ON songplays.song_id = songs.song_id
-JOIN users ON songplays.user_id = users.user_id
-WHERE users.level = 1
-GROUP BY Song
-ORDER BY Listens DESC
-LIMIT 1;
